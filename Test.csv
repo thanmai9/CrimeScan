@@ -1,0 +1,9 @@
+Area_Name,Year,Group_Name,Cases_Property_Stolen,Latitude,Longitude,Severity
+"Delhi Central",2023,"Armed Robbery",45,28.6139,77.2090,5
+"Mumbai Downtown",2023,"Gang Violence",38,19.0760,72.8777,4
+"Chennai Port",2023,"Drug Trafficking",28,13.0827,80.2707,4
+"Kolkata Market",2023,"Mass Theft",22,22.5726,88.3639,3
+"Bangalore Tech Park",2023,"Cyber Crime",15,12.9716,77.5946,2
+"Delhi Suburbs",2023,"Burglary",12,28.7041,77.1025,2
+"Mumbai Slums",2023,"Petty Theft",8,19.1073,72.8363,1
+"Pune Residential",2023,"Vandalism",5,18.5204,73.8567,1

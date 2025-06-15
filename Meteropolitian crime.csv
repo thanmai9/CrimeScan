@@ -1,0 +1,9 @@
+Area_Name,Year,Group_Name,Cases_Property_Stolen,Latitude,Longitude,Severity
+"Delhi High Court Area",2023,"Violent Assault",52,28.6243,77.2109,5
+"Mumbai Financial District",2023,"Corporate Fraud",41,19.0762,72.8756,4
+"Chennai Marina Beach",2023,"Pickpocketing",68,13.0544,80.2836,3
+"Kolkata Howrah Bridge",2023,"Street Robbery",37,22.5853,88.3472,4
+"Bangalore IT Corridor",2023,"Cyber Crime",29,12.9718,77.5937,4
+"Hyderabad Old City",2023,"Communal Violence",44,17.3616,78.4747,5
+"Pune Nightlife Zone",2023,"Drug Offenses",33,18.5204,73.8567,3
+"Jaipur Tourist Area",2023,"Scams",27,26.9124,75.7873,2

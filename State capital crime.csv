@@ -1,0 +1,8 @@
+Area_Name,Year,Group_Name,Cases_Property_Stolen,Latitude,Longitude,Severity
+"Lucknow City Center",2023,"Political Violence",48,26.8467,80.9462,5
+"Patna Market Area",2023,"Extortion",39,25.5941,85.1376,4
+"Bhopal Residential Zone",2023,"Domestic Violence",31,23.2599,77.4126,3
+"Chandigarh Sector 17",2023,"White Collar Crime",22,30.7333,76.7794,2
+"Dehradun Tourist Spots",2023,"Petty Theft",18,30.3165,78.0322,2
+"Ranchi Industrial Area",2023,"Labor Unrest",26,23.3441,85.3096,3
+"Shimla Mall Road",2023,"Tourist Harassment",14,31.1048,77.1734,1

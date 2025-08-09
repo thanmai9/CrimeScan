@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from auth import login, logout
+from report_generator import generate_pdf_report
 from sklearn.cluster import DBSCAN
 import folium
 from folium.plugins import HeatMap, MarkerCluster
@@ -27,7 +29,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
    
 )
-
+login()
 # Custom CSS with professional crime analytics theme
 st.markdown("""
     <style>
@@ -129,7 +131,10 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
+# LOGOUT BUTTON - Top Right using columns
+header_cols = st.columns([9, 1])  # Adjust ratio as needed
+with header_cols[1]:
+    st.button("Logout", on_click=logout)
 # =============================================
 # HEADER SECTION - SIMPLIFIED
 # =============================================
@@ -186,6 +191,7 @@ st.markdown("""
         <div class="tagline">Intelligent Crime Prediction & Prevention System</div>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 # =============================================
@@ -555,6 +561,57 @@ st.dataframe(
     use_container_width=True,
     height=400
 )
+st.subheader("🏆 Top Crime Zones")
+top_zones = df.sort_values(["Severity", "cases"], ascending=False).head(5)
+st.dataframe(top_zones)
+
+
+# =============================================
+# PDF EXPORT SECTION
+# =============================================
+st.markdown("---")
+if st.button("📥 Export Report as PDF", use_container_width=True):
+    with st.spinner("Generating PDF report..."):
+        summary = {
+            "Total Cases": f"{int(df['cases'].sum()):,}",
+            "High Risk Zones": len(df[df["Severity"] >= 4]),
+            "Crime Types": df["Group_Name"].nunique(),
+            "Time Period": f"{df['Year'].min()} - {df['Year'].max()}" if df['Year'].nunique() > 1 else str(df['Year'].min()),
+            "Locations Analyzed": df[col_area].nunique()
+        }
+
+        # Prepare data for PDF
+        renamed_zones = top_locations.rename(columns={
+            col_area: 'Location',
+            'Group_Name': 'Crime Type',
+            'cases': 'Cases'
+        })
+
+        pdf_path = generate_pdf_report(summary, renamed_zones)
+        
+        if pdf_path and os.path.exists(pdf_path):
+            # Read the file and create download button
+            with open(pdf_path, "rb") as pdf_file:
+                pdf_bytes = pdf_file.read()
+            
+            st.download_button(
+                label="📁 Download PDF Report",
+                data=pdf_bytes,
+                file_name=f"CrimeScan_Report_{datetime.now().strftime('%Y%m%d')}.pdf",
+                mime="application/pdf",
+                use_container_width=True
+            )
+            
+            # Clean up temporary file
+            try:
+                os.remove(pdf_path)
+            except:
+                pass
+                
+            st.success("✅ Report generated successfully!")
+        else:
+            st.error("❌ Failed to generate PDF report")
+
 
 # =============================================
 # FOOTER
